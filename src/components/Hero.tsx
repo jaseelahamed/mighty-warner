@@ -1,5 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const thumbnails = [
   "https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=800&q=80",
@@ -10,12 +15,48 @@ const thumbnails = [
 
 export default function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        toggleActions: "restart reset restart reset"
+      }
+    });
+
+    tl.from(".hero-text-fresh", {
+      x: 100,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out"
+    }, 0)
+    .from(".hero-text-juicy", {
+      x: -100,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out"
+    }, 0.15)
+    .from(".hero-text-bright", {
+      x: 100,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out"
+    }, 0.3)
+    .from(".hero-text-desc", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out"
+    }, 0.45);
+  }, { scope: containerRef });
 
   const nextSlide = () => setActiveIndex((prev) => (prev + 1) % thumbnails.length);
   const prevSlide = () => setActiveIndex((prev) => (prev - 1 + thumbnails.length) % thumbnails.length);
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden flex flex-col">
+    <section ref={containerRef} className="relative w-full h-screen min-h-[600px] overflow-hidden flex flex-col">
    
       <div className="absolute inset-0 " />
       {/* <div className="absolute inset-0 bg-gradient-to-tr from-orange-400 to-orange-200" /> */}
@@ -30,11 +71,11 @@ export default function Hero() {
         <div className="cmpad pb-8 flex justify-between items-end w-full">
           <div className="max-w-3xl">
             <h1 className="font-[family-name:var(--font-inter)] text-white leading-[0.95] tracking-normal uppercase flex flex-col">
-              <span className="font-light text-[2.5rem] min-[400px]:text-[3rem] sm:text-[4rem] md:text-[4.75rem] lg:text-[5.75rem] xl:text-[6.25rem] lg:pl-[8rem] md:pl-[4rem] pl-0">FRESH</span>
-              <span className="font-semibold text-[2.5rem] min-[400px]:text-[3rem] sm:text-[4rem] md:text-[4.75rem] lg:text-[5.75rem] xl:text-[6.25rem] lg:pl-[6rem] md:pl-[2rem] pl-0">JUICY</span>
-              <span className="font-black text-[2.5rem] min-[400px]:text-[3rem] sm:text-[4rem] md:text-[4.75rem] lg:text-[5.75rem] xl:text-[6.25rem] lg:pl-[8rem] md:pl-[4rem] pl-0">BRIGHT</span>
+              <span className="hero-text-fresh font-light text-[2.5rem] min-[400px]:text-[3rem] sm:text-[4rem] md:text-[4.75rem] lg:text-[5.75rem] xl:text-[6.25rem] lg:pl-[8rem] md:pl-[4rem] pl-0">FRESH</span>
+              <span className="hero-text-juicy font-semibold text-[2.5rem] min-[400px]:text-[3rem] sm:text-[4rem] md:text-[4.75rem] lg:text-[5.75rem] xl:text-[6.25rem] lg:pl-[6rem] md:pl-[2rem] pl-0">JUICY</span>
+              <span className="hero-text-bright font-black text-[2.5rem] min-[400px]:text-[3rem] sm:text-[4rem] md:text-[4.75rem] lg:text-[5.75rem] xl:text-[6.25rem] lg:pl-[8rem] md:pl-[4rem] pl-0">BRIGHT</span>
             </h1>
-            <p className="mt-8 text-white/90 max-w-[550px] font-normal leading-none lg:pl-[8rem] md:pl-[4rem] pl-0 text-[0.875rem] sm:text-[0.9375rem] md:text-[1rem] lg:text-[1.0625rem] xl:text-[1.125rem]">
+            <p className="hero-text-desc mt-8 text-white/90 max-w-[550px] font-normal leading-none lg:pl-[8rem] md:pl-[4rem] pl-0 text-[0.875rem] sm:text-[0.9375rem] md:text-[1rem] lg:text-[1.0625rem] xl:text-[1.125rem]">
               Streamlining Media Relations for Brands. Orange PR manages media relations,
               freeing clients to focus on daily operations, while ensuring campaign initiatives
               are constantly monitored and updated for success.
@@ -63,7 +104,7 @@ export default function Hero() {
               EXPLORE
             </button>
 
-            {/* Carousel Controls */}
+        
             <div className="flex items-center space-x-6 border border-white/50 rounded-full px-8 py-3 text-white">
               <button type="button" onClick={prevSlide} className="hover:opacity-70 transition-opacity cursor-pointer">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
