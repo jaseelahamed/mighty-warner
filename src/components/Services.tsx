@@ -1,6 +1,11 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
@@ -24,8 +29,43 @@ const services = [
   },
 ];
 
+const paragraphText = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.";
+
 export default function Services() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const containerRef = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    // Heading Animation
+    gsap.from('.services-heading-row', {
+      scrollTrigger: {
+        trigger: '.services-heading-container',
+        start: 'top 85%',
+        toggleActions: 'play reverse play reverse',
+      },
+      rotationX: -90,
+      y: 40,
+      opacity: 0,
+      transformOrigin: "50% 100% -50",
+      duration: 1,
+      stagger: 0.2,
+      ease: 'power3.out',
+    });
+
+    // Paragraph Animation
+    gsap.from('.services-paragraph-word', {
+      scrollTrigger: {
+        trigger: '.services-paragraph-container',
+        start: 'top 80%',
+        toggleActions: 'play reverse play reverse',
+      },
+      y: "120%",
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.015,
+      ease: 'power2.out',
+    });
+  }, { scope: containerRef });
 
   // Helper to get exact sizes to maintain the stair-step layout
   const getCardClasses = (index: number) => {
@@ -51,21 +91,30 @@ export default function Services() {
   };
 
   return (
-    <section className="py-24 pl-6 md:pl-12 lg:pl-24 bg-white overflow-hidden">
+    <section ref={containerRef} className="py-24 pl-6 md:pl-12 lg:pl-24 bg-white overflow-hidden">
       <div className="mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
         {/* Left Column: Text Content */}
         <div className="w-full lg:w-[30%] shrink-0 flex flex-col justify-center">
-          <h2 className="text-[1.875rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] xl:text-[3.25rem] font-[family-name:var(--font-inter)] font-bold uppercase text-[#1a1a1a] leading-[1.2] tracking-tight">
-            What We Do
-            <br />
-            Experts
-          </h2>
+          <div className="services-heading-container">
+            <h2 className="text-[1.875rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] xl:text-[3.25rem] font-[family-name:var(--font-inter)] font-bold uppercase text-[#1a1a1a] leading-[1.2] tracking-tight">
+              <div className="overflow-hidden" style={{ perspective: '1000px' }}>
+                <div className="services-heading-row inline-block origin-bottom">What We Do</div>
+              </div>
+              <div className="overflow-hidden" style={{ perspective: '1000px' }}>
+                <div className="services-heading-row inline-block origin-bottom">Experts</div>
+              </div>
+            </h2>
+          </div>
           <p className="text-[1.25rem] sm:text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] xl:text-[2.25rem] font-[family-name:var(--font-inter)] font-medium text-[#466378] mt-4 lg:mt-6 leading-tight">
             We build brands.
           </p>
           
-          <p className="font-sans text-[#1a1a1a] mt-12 mb-16 text-[1.125rem] leading-[1.8] max-w-[22rem]">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.
+          <p className="services-paragraph-container font-sans text-[#1a1a1a] mt-12 mb-16 text-[1.125rem] leading-[1.8] max-w-[22rem]">
+            {paragraphText.split(' ').map((word, i) => (
+              <span key={i} className="inline-block overflow-hidden align-bottom">
+                <span className="services-paragraph-word inline-block">{word}&nbsp;</span>
+              </span>
+            ))}
           </p>
           
           <div className="flex items-center justify-between mt-auto w-full max-w-[22rem]">
@@ -106,7 +155,7 @@ export default function Services() {
 
                 {/* Frosted Glass Overlay at the bottom */}
                 <div 
-                  className={`absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent backdrop-blur-md pointer-events-none transition-all duration-700 ${isActive ? 'h-[60%] from-black/90 via-black/50' : 'h-[50%] from-black/80 via-black/30'}`}
+                  className={`absolute inset-x-0 bottom-0 backdrop-blur-md pointer-events-none transition-all duration-700 ${isActive ? 'h-[60%]' : 'h-[50%]'}`}
                   style={{
                     maskImage: 'linear-gradient(to top, black 50%, transparent 100%)',
                     WebkitMaskImage: 'linear-gradient(to top, black 50%, transparent 100%)'
