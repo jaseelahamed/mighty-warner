@@ -59,7 +59,6 @@ export default function Hero() {
     <section ref={containerRef} className="relative w-full h-screen min-h-[600px] overflow-hidden flex flex-col">
    
       <div className="absolute inset-0 " />
-      {/* <div className="absolute inset-0 bg-gradient-to-tr from-orange-400 to-orange-200" /> */}
       <div 
         className=" hero-bg" 
       />
