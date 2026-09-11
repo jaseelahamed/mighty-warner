@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Services from "@/components/Services";
 
 export default function Home() {
   return (
@@ -10,78 +11,8 @@ export default function Home() {
 
       <About />
 
-      {/* Services Section */}
-      <section className="py-24 px-6 md:px-12 lg:px-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-4 gap-12 items-center">
-          <div className="lg:col-span-1">
-            <h2 className="text-4xl font-black leading-tight uppercase tracking-tight">
-              What We Do
-              <br />
-              Experts
-            </h2>
-            <div className="w-12 h-1 bg-blue-500 mt-6 mb-8"></div>
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              Our experts specialize in creating dynamic campaigns tailored to
-              your specific brand requirements.
-            </p>
-            <button className="px-8 py-4 bg-black text-white font-bold rounded hover:bg-gray-800 transition-colors">
-              View All
-            </button>
-          </div>
-
-          <div className="lg:col-span-3 grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Media Relations",
-                img: "https://images.unsplash.com/photo-1558403194-611308249d50?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                active: true,
-              },
-              {
-                title: "Influencer Management",
-                img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-              },
-              {
-                title: "Events",
-                img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-              },
-            ].map((service, i) => (
-              <div
-                key={i}
-                className={`group relative h-96 rounded-2xl overflow-hidden cursor-pointer ${service.active ? "ring-4 ring-blue-500 ring-offset-4" : ""}`}
-              >
-                <img
-                  src={service.img}
-                  alt={service.title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-white text-xl font-bold">
-                    {service.title}
-                  </h3>
-                </div>
-                {service.active && (
-                  <div className="absolute bottom-6 right-6 w-10 h-10 bg-white rounded-full flex items-center justify-center text-blue-500 shadow-lg">
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    
+      <Services />
 
       {/* Why Choose Us / Process */}
       <section className="py-32 px-6 md:px-12 lg:px-24 bg-white relative overflow-hidden">
