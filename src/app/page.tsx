@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -17,48 +18,7 @@ export default function Home() {
 
       <WhyChooseUs />
 
-      {/* Testimonials */}
-      <section className="py-32 px-6 md:px-12 lg:px-24 bg-white text-center">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-16">
-            Testimonials
-          </h2>
-
-          <div className="flex flex-wrap justify-center gap-4 mb-16 px-4">
-            {/* Grid of faces */}
-            {[
-              "https://randomuser.me/api/portraits/women/44.jpg",
-              "https://randomuser.me/api/portraits/men/32.jpg",
-              "https://randomuser.me/api/portraits/men/46.jpg",
-              "https://randomuser.me/api/portraits/women/68.jpg",
-              "https://randomuser.me/api/portraits/men/84.jpg",
-              "https://randomuser.me/api/portraits/women/12.jpg",
-              "https://randomuser.me/api/portraits/men/22.jpg",
-              "https://randomuser.me/api/portraits/women/33.jpg",
-              "https://randomuser.me/api/portraits/men/62.jpg",
-            ].map((img, i) => (
-              <img
-                key={i}
-                src={img}
-                alt="Client"
-                className={`w-16 h-16 rounded-xl object-cover shadow-md hover:scale-110 transition-transform cursor-pointer ${i === 4 ? "ring-4 ring-orange-500 ring-offset-2 scale-110" : "grayscale hover:grayscale-0"}`}
-              />
-            ))}
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <p className="text-xl md:text-2xl text-gray-700 italic font-medium leading-relaxed">
-              "Orange PR revolutionized our brand's presence. Their strategic
-              insights and flawless execution resulted in unprecedented media
-              coverage. They truly understand how to connect with an audience."
-            </p>
-            <div className="mt-8">
-              <h4 className="font-bold text-gray-900">Sarah Jenkins</h4>
-              <p className="text-gray-500 text-sm">CMO, TechNova</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Testimonials />
 
       {/* Contact Section */}
       <section className="py-0 flex flex-col md:flex-row bg-gray-50">
