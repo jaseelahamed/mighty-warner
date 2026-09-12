@@ -175,9 +175,9 @@ export default function About() {
       </div>
 
       <div className="stats-container mt-22 border-y border-gray-100 bg-white relative z-10">
-        <div className="w-fit mx-auto flex flex-col lg:flex-row border-l-0 lg:border-l border-gray-100">
+        <div className="w-full lg:w-fit mx-auto grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row border-l-0 lg:border-l border-gray-100">
 
-          <div className="stat-box flex items-center justify-center px-16 py-10 border-r border-b lg:border-b-0 border-gray-100">
+          <div className="stat-box flex items-center justify-start sm:justify-center px-8 sm:px-12 lg:px-16 py-8 lg:py-10 border-b border-gray-100 border-r-0 sm:border-r lg:border-r">
             <div className="w-16 h-16 bg-[#DEE4E6] rounded-[10px] flex items-center justify-center mr-6 shrink-0 text-[#475569]">
               <img src="/ix_customer.svg" alt="Customers" className="w-10 h-10" />
             </div>
@@ -187,7 +187,7 @@ export default function About() {
             </div>
           </div>
      
-          <div className="stat-box flex items-center justify-center px-16 py-10 border-r border-b lg:border-b-0 border-gray-100">
+          <div className="stat-box flex items-center justify-start sm:justify-center px-8 sm:px-12 lg:px-16 py-8 lg:py-10 border-b border-gray-100 border-r-0 sm:border-r-0 lg:border-r">
             <div className="w-16 h-16 bg-[#DEE4E6] rounded-[10px] flex items-center justify-center mr-6 shrink-0 text-[#475569]">
               <img src="/event.svg" alt="Customers" className="w-10 h-10" />
             </div>
@@ -197,7 +197,7 @@ export default function About() {
             </div>
           </div>
    
-          <div className="stat-box flex items-center justify-center px-16 py-10 border-r border-b lg:border-b-0 border-gray-100">
+          <div className="stat-box flex items-center justify-start sm:justify-center px-8 sm:px-12 lg:px-16 py-8 lg:py-10 border-b sm:border-b-0 border-gray-100 border-r-0 sm:border-r lg:border-r">
             <div className="w-16 h-16 bg-[#DEE4E6] rounded-[10px] flex items-center justify-center mr-6 shrink-0 text-[#475569]">
               <img src="/streamline.svg" alt="Customers" className="w-10 h-10" />
             </div>
@@ -207,7 +207,7 @@ export default function About() {
             </div>
           </div>
          
-          <div className="stat-box flex items-center justify-center px-16 py-10 border-r border-b-0 border-gray-100">
+          <div className="stat-box flex items-center justify-start sm:justify-center px-8 sm:px-12 lg:px-16 py-8 lg:py-10 border-gray-100 border-r-0 lg:border-r">
             <div className="w-16 h-16 bg-[#DEE4E6] rounded-[10px] flex items-center justify-center mr-6 shrink-0 text-[#475569]">
               <img src="/carbon.svg" alt="Customers" className="w-10 h-10" />
             </div>
