@@ -36,7 +36,7 @@ export default function Services() {
   const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    // Heading Animation
+ 
     gsap.from('.services-heading-row', {
       scrollTrigger: {
         trigger: '.services-heading-container',
@@ -52,7 +52,7 @@ export default function Services() {
       ease: 'power3.out',
     });
 
-    // Paragraph Animation
+    
     gsap.from('.services-paragraph-word', {
       scrollTrigger: {
         trigger: '.services-paragraph-container',
@@ -74,11 +74,11 @@ export default function Services() {
           start: 'top 80%',
           toggleActions: 'play none none reset',
           onEnter: () => {
-            // Temporarily remove transition classes to prevent conflict with GSAP
+     
             cards.forEach(card => card.classList.remove('transition-all', 'duration-700'));
           },
           onLeaveBack: () => {
-            // Remove transition classes when scrolling up so the reset is instant
+        
             cards.forEach(card => card.classList.remove('transition-all', 'duration-700'));
           }
         },
@@ -89,40 +89,39 @@ export default function Services() {
         ease: 'power3.out',
         clearProps: 'all',
         onComplete: () => {
-          // Restore transition classes for click animations
+   
           cards.forEach(card => card.classList.add('transition-all', 'duration-700'));
         }
       });
     }
   }, { scope: containerRef });
 
-  // Helper to get exact sizes to maintain the stair-step layout
+
   const getCardClasses = (index: number) => {
     if (index === activeIndex) {
-      // Active (Largest)
+   
       return "lg:w-[26.4375rem] h-[400px] lg:h-[35.75rem]";
     }
     
-    // Determine which of the two inactive sizes this card gets
-    // First inactive card from left gets medium, second gets small
+
     const isFirstInactive = 
       (activeIndex === 0 && index === 1) || 
       (activeIndex === 1 && index === 0) || 
       (activeIndex === 2 && index === 0);
 
     if (isFirstInactive) {
-      // Medium
+  
       return "lg:w-[15.75rem] h-[300px] lg:h-[32.0625rem]";
     }
     
-    // Small
+    
     return "lg:w-[12.1875rem] h-[250px] lg:h-[27.5625rem]";
   };
 
   return (
     <section ref={containerRef} className="py-24 pl-6 md:pl-12 lg:pl-24 bg-white overflow-hidden">
       <div className="mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
-        {/* Left Column: Text Content */}
+        
         <div className="w-full lg:w-[30%] shrink-0 flex flex-col justify-center">
           <div className="services-heading-container">
             <h2 className="text-[1.875rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] xl:text-[3.25rem] font-[family-name:var(--font-inter)] font-bold uppercase text-[#1a1a1a] leading-[1.2] tracking-tight">
@@ -166,7 +165,7 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Right Column: Expanding Cards Gallery */}
+       
         <div className="services-cards-container w-full lg:w-[70%] flex flex-col lg:flex-row items-start justify-end gap-6 lg:h-[35.75rem]">
           {services.map((service, index) => {
             const isActive = index === activeIndex;
@@ -182,7 +181,7 @@ export default function Services() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
-                {/* Frosted Glass Overlay at the bottom */}
+              
                 <div 
                   className={`absolute inset-x-0 bottom-0 backdrop-blur-md pointer-events-none transition-all duration-700 ${isActive ? 'h-[60%]' : 'h-[50%]'}`}
                   style={{
@@ -191,23 +190,22 @@ export default function Services() {
                   }}
                 ></div>
 
-                {/* Card Content */}
+          
                 <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex items-end justify-between z-10">
                   <div className="flex flex-col">
                     <h3
-                      className={`font-sans font-semibold text-white leading-none transition-all duration-700 ${isActive ? "text-[2.5rem]" : "text-[1.75rem]"}`}
+                      className={`font-[family-name:var(--font-inter)]  font-medium text-white leading-none transition-all duration-700 ${isActive ? "text-[2.5rem]" : "text-[1.75rem]"}`}
                     >
                       {service.title}
                     </h3>
                     {service.subtitle && (
                       <h4
-                        className={`font-sans text-white mt-2 transition-all duration-700 ${isActive ? "text-[1.5rem] font-medium" : "text-[1.125rem] font-normal"}`}
+                        className={`font-[family-name:var(--font-inter)]  text-white mt-2 transition-all duration-700 ${isActive ? "text-[1.5rem] font-medium" : "text-[1.125rem] font-normal"}`}
                       >
                         {service.subtitle}
                       </h4>
                     )}
                     
-                    {/* Description - only shown when active, faded in */}
                     <div className={`overflow-hidden transition-all duration-700 ${isActive ? 'max-h-32 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
                       <p className="text-white/80 text-[13px] max-w-[280px] leading-relaxed">
                         {service.desc}
@@ -215,7 +213,6 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Circular Arrow Button - only shown when active */}
                   <div className={`w-12 h-12 bg-white rounded-full flex items-center justify-center shrink-0 shadow-lg ml-4 cursor-pointer hover:bg-gray-100 transition-all duration-700 ${isActive ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-50 absolute right-8'}`}>
                     <svg
                       className="w-5 h-5 text-gray-900"

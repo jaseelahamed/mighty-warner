@@ -3,6 +3,7 @@ import Image from "next/image";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import WhyChooseUs from "@/components/WhyChooseUs";
 
 export default function Home() {
   return (
@@ -14,63 +15,7 @@ export default function Home() {
     
       <Services />
 
-      {/* Why Choose Us / Process */}
-      <section className="py-32 px-6 md:px-12 lg:px-24 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-50/50 skew-y-3 origin-top-left -z-10 scale-110"></div>
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-20">
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">
-              Why Choose Us
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 relative z-10">
-            {/* Card 1 */}
-            <div className="bg-blue-100 rounded-3xl p-10 transform md:translate-y-0 shadow-lg hover:-translate-y-2 transition-transform">
-              <div className="text-4xl font-black text-blue-200 mb-6">01</div>
-              <h3 className="text-xl font-bold mb-4">
-                Evaluate Business
-                <br />
-                Needs
-              </h3>
-              <p className="text-gray-700">
-                We deeply analyze your business to uncover unique angles that
-                align with your overarching goals.
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-orange-400 text-white rounded-3xl p-10 transform md:translate-y-12 shadow-xl hover:-translate-y-2 md:hover:translate-y-10 transition-transform">
-              <div className="text-4xl font-black text-orange-300 mb-6">02</div>
-              <h3 className="text-xl font-bold mb-4">
-                Choose Active
-                <br />
-                PR Strategies
-              </h3>
-              <p className="text-white/90">
-                Our tailored strategies focus on high-impact channels to
-                maximize reach and drive tangible results.
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-orange-200 rounded-3xl p-10 transform md:translate-y-24 shadow-lg hover:translate-y-22 md:hover:translate-y-20 transition-transform">
-              <div className="text-4xl font-black text-orange-300/50 mb-6">
-                03
-              </div>
-              <h3 className="text-xl font-bold mb-4">
-                Campaign
-                <br />
-                Execution
-              </h3>
-              <p className="text-gray-800">
-                Flawless execution ensures every message is delivered
-                consistently, capturing public attention effectively.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <WhyChooseUs />
 
       {/* Testimonials */}
       <section className="py-32 px-6 md:px-12 lg:px-24 bg-white text-center">
