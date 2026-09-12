@@ -23,23 +23,19 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // GSAP Animation for Mobile Menu
   useEffect(() => {
     if (isMobileMenuOpen) {
-      // Slide menu in
       gsap.to(menuRef.current, {
         x: "0%",
         duration: 0.7,
         ease: "power4.out"
       });
       
-      // Stagger links in
       gsap.fromTo(linksRef.current, 
         { y: 40, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.3, ease: "power3.out" }
       );
     } else {
-      // Slide menu out
       gsap.to(menuRef.current, {
         x: "100%",
         duration: 0.5,
@@ -85,12 +81,10 @@ export default function Header() {
         </nav>
       </header>
 
-      {/* Modern Full-Screen Mobile Menu */}
       <div 
         ref={menuRef}
         className="fixed inset-0 w-full h-full bg-orange-500 z-[70] flex flex-col justify-center items-center translate-x-full lg:hidden"
       >
-        {/* Close Button */}
         <button 
           onClick={closeMenu}
           className="absolute top-6 right-6 p-4 text-white hover:text-black transition-colors z-[80]"
@@ -100,12 +94,10 @@ export default function Header() {
           </svg>
         </button>
 
-        {/* Decorative Background Text */}
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.05] pointer-events-none overflow-hidden">
           <span className="text-[15rem] font-black font-[family-name:var(--font-inter)] text-black whitespace-nowrap transform -rotate-12">ORANGE PR</span>
         </div>
 
-        {/* Links Container */}
         <div className="flex flex-col items-center space-y-10 font-[family-name:var(--font-inter)] font-black uppercase text-[1.5rem] sm:text-[1.75rem] md:text-[2rem] text-white relative z-10 w-full px-8">
           {[
             { name: "HOME", href: "#home" },
@@ -126,7 +118,6 @@ export default function Header() {
           ))}
         </div>
         
-        {/* Footer info in menu */}
         <div className="absolute bottom-10 left-0 w-full text-center text-white/70 text-sm tracking-widest uppercase font-[family-name:var(--font-inter)]">
           <p>Dubai's Leading PR Agency</p>
         </div>
