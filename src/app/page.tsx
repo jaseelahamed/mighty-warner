@@ -10,12 +10,12 @@ import Contact from "@/components/Contact";
 export default function Home() {
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-orange-500 selection:text-white">
-      <Hero />
-      <About />
-      <Services />
+      <div id="home"><Hero /></div>
+      <div id="about"><About /></div>
+      <div id="services"><Services /></div>
       <WhyChooseUs />
       <Testimonials />
-       <Contact />
+      <div id="contact"><Contact /></div>
     </div>
   );
 }

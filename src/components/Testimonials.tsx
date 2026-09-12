@@ -192,7 +192,6 @@ export default function Testimonials() {
                   key={itemIdx}
                   className={`w-full ${item.h} ${item.mt || ''} ${itemIdx === 0 ? 'rounded-b-[1rem]' : 'rounded-[1rem]'} shadow-sm transition-transform hover:scale-105 duration-300 bg-[#EFEFEF] overflow-hidden`}
                   style={{
-                    ...(item.clip ? { clipPath: item.clip } : {}),
                     perspective: '1000px'
                   }}
                 >
