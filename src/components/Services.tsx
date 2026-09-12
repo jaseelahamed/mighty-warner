@@ -65,6 +65,35 @@ export default function Services() {
       stagger: 0.015,
       ease: 'power2.out',
     });
+
+    const cards = gsap.utils.toArray('.service-card') as HTMLElement[];
+    if (cards.length > 0) {
+      gsap.from(cards, {
+        scrollTrigger: {
+          trigger: '.services-cards-container',
+          start: 'top 80%',
+          toggleActions: 'play none none reset',
+          onEnter: () => {
+            // Temporarily remove transition classes to prevent conflict with GSAP
+            cards.forEach(card => card.classList.remove('transition-all', 'duration-700'));
+          },
+          onLeaveBack: () => {
+            // Remove transition classes when scrolling up so the reset is instant
+            cards.forEach(card => card.classList.remove('transition-all', 'duration-700'));
+          }
+        },
+        y: 100,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
+        clearProps: 'all',
+        onComplete: () => {
+          // Restore transition classes for click animations
+          cards.forEach(card => card.classList.add('transition-all', 'duration-700'));
+        }
+      });
+    }
   }, { scope: containerRef });
 
   // Helper to get exact sizes to maintain the stair-step layout
@@ -138,14 +167,14 @@ export default function Services() {
         </div>
 
         {/* Right Column: Expanding Cards Gallery */}
-        <div className="w-full lg:w-[70%] flex flex-col lg:flex-row items-start justify-end gap-6 lg:h-[35.75rem]">
+        <div className="services-cards-container w-full lg:w-[70%] flex flex-col lg:flex-row items-start justify-end gap-6 lg:h-[35.75rem]">
           {services.map((service, index) => {
             const isActive = index === activeIndex;
             return (
               <div
                 key={service.id}
                 onClick={() => setActiveIndex(index)}
-                className={`group relative rounded-[20px] overflow-hidden cursor-pointer transition-all duration-700 ease-out flex-shrink-0 w-full ${getCardClasses(index)}`}
+                className={`service-card group relative rounded-[20px] overflow-hidden cursor-pointer transition-all duration-700 ease-out flex-shrink-0 w-full ${getCardClasses(index)}`}
               >
                 <img
                   src={service.img}
